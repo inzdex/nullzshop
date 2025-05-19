@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-black text-gray-200 scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nullz</title>
+  <link rel="icon" type="image/png" href="NULLZ.png">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: url('https://img.freepik.com/free-photo/abstract-blurred-background-light-leaks_58702-1252.jpg?semt=ais_hybrid&w=740') no-repeat center center fixed;
+      background-size: cover;
+      font-family: monospace;
+      cursor: default;
+    }
+
+    #cursor {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background: #f0f;
+      mix-blend-mode: difference;
+      pointer-events: none;
+      z-index: 9999;
+      border-radius: 50%;
+      transition: transform 0.05s ease;
+    }
+
+    .glitch {
+      position: relative;
+      font-size: 3rem;
+    }
+
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      width: 100%;
+    }
+
+    .glitch::before {
+      animation: glitchTop 2s infinite linear alternate-reverse;
+      top: -2px;
+      color: #f0f;
+    }
+
+    .glitch::after {
+      animation: glitchBottom 1.5s infinite linear alternate-reverse;
+      top: 2px;
+      color: #0ff;
+    }
+
+    @keyframes glitchTop {
+      0% { clip: rect(0, 9999px, 0, 0); }
+      20% { clip: rect(5px, 9999px, 15px, 0); }
+      100% { clip: rect(0, 9999px, 0, 0); }
+    }
+
+    @keyframes glitchBottom {
+      0% { clip: rect(0, 9999px, 0, 0); }
+      25% { clip: rect(20px, 9999px, 30px, 0); }
+      100% { clip: rect(0, 9999px, 0, 0); }
+    }
+
+    .glitch-exit {
+      animation: glitchOut 1s forwards;
+    }
+
+    @keyframes glitchOut {
+      0% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.3; transform: scale(1.05) rotate(2deg); }
+      100% { opacity: 0; transform: scale(0.9) rotate(-2deg); }
+    }
+
+    #particles {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    #intro {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: black;
+      color: #00ff00;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.2rem;
+      z-index: 10000;
+    }
+
+    .typewriter span::after {
+      content: "|";
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Custom Cursor -->
+  <div id="cursor"></div>
+
+  <!-- Particles Background -->
+  <div id="particles"></div>
+
+  <!-- Audio (no autoplay) -->
+  <audio id="music" src="Notion Hoodtrap Remix (prod. sims).mp3" loop></audio>
+
+  <!-- Volume Slider -->
+  <div class="fixed top-6 left-4 z-50">
+    <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.5" class="w-32 h-2 bg-fuchsia-600 rounded-lg appearance-none cursor-pointer">
+  </div>
+
+  <!-- Terminal Intro -->
+  <div id="intro">
+    <div class="typewriter mb-6 text-green-400"><span id="introText"></span></div>
+    <button onclick="startSite()" class="bg-green-700 px-4 py-2 mt-4 rounded hover:bg-green-500">ENTER</button>
+  </div>
+
+  <!-- Sticky Header -->
+  <header class="sticky top-0 z-40 bg-black/80 backdrop-blur border-b border-gray-700">
+    <div class="max-w-7xl mx-auto px-4 py-2 flex justify-center space-x-6">
+      <a href="#projects" class="text-fuchsia-400 hover:underline">Payment</a>
+      <a href="#about" class="text-fuchsia-400 hover:underline">Get</a>
+      <a href="#contact" class="text-fuchsia-400 hover:underline">Contact</a>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="mainContent" class="opacity-0 transition-opacity duration-700">
+    <section class="min-h-screen flex flex-col justify-center items-center px-4">
+      <h1 class="glitch text-white" data-text="nullz">nullz</h1>
+      <p class="mt-6 text-fuchsia-500 text-xl text-center"><span class="typewriter">Ill make you a website.</span></p>
+    </section>
+
+    <section id="projects" class="min-h-screen flex flex-col items-center justify-center bg-black/60 text-fuchsia-500 p-6">
+      <h2 class="text-3xl mb-6">Payment</h2>
+      <div class="bg-black/40 p-6 rounded-xl shadow-lg w-full max-w-md">
+        <p class="text-gray-300">From 5$ to 50$ (Not including cov-site).</p>
+      </div>
+    </section>
+
+    <section id="about" class="min-h-screen flex flex-col items-center justify-center bg-black/60 text-fuchsia-500 p-6">
+      <h2 class="text-3xl mb-6">Get</h2>
+      <div class="bg-black/40 p-6 rounded-xl shadow-lg w-full max-w-md">
+        <p class="text-gray-300">Youll get a handmade site with games, Videos, ect.</p>
+      </div>
+    </section>
+
+    <section id="contact" class="min-h-screen flex flex-col items-center justify-center bg-black/60 text-fuchsia-500 p-6">
+      <h2 class="text-3xl mb-6">Contact</h2>
+      <div class="bg-black/40 p-6 rounded-xl shadow-lg w-full max-w-md">
+        <p class="text-gray-300">Add null.bat on snap.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800, once: true });
+
+    // Cursor
+    const cursor = document.getElementById("cursor");
+    document.addEventListener("mousemove", e => {
+      cursor.style.transform = `translate(${e.clientX - 10}px, ${e.clientY - 10}px)`;
+    });
+
+    // Volume
+    const music = document.getElementById("music");
+    const slider = document.getElementById("volumeSlider");
+    slider.addEventListener("input", () => {
+      music.volume = slider.value;
+    });
+
+    // Particles
+    let emitter;
+    tsParticles.load("particles", {
+      fullScreen: { enable: false },
+      background: { color: "#000" },
+      emitters: [{
+        autoPlay: false,
+        name: "burst",
+        rate: { quantity: 40, delay: 0 },
+        life: { duration: 0.1, count: 1 },
+        particles: {
+          color: { value: "#fff" },
+          size: { value: 2 },
+          move: { speed: 4 },
+          opacity: { value: 0.6 },
+        },
+        position: { x: 50, y: 50 }
+      }],
+      particles: {
+        color: { value: "#888" },
+        links: { enable: true, color: "#666", distance: 120 },
+        move: { enable: true, speed: 1 },
+        size: { value: { min: 0.5, max: 1.5 } },
+        opacity: { value: 0.3 }
+      }
+    }).then(container => {
+      emitter = container?.emitters?.getEmitter("burst");
+    });
+
+    function emitClick(e) {
+      if (!emitter) return;
+      const x = (e.clientX / window.innerWidth) * 100;
+      const y = (e.clientY / window.innerHeight) * 100;
+      emitter.setPosition({ x, y });
+      emitter.play();
+    }
+    document.body.addEventListener("click", emitClick);
+
+    // Type Effect
+    const introText = "Initializing nullz";
+    let introIndex = 0;
+    function typeIntro() {
+      const el = document.getElementById("introText");
+      if (introIndex < introText.length) {
+        el.textContent += introText.charAt(introIndex);
+        introIndex++;
+        setTimeout(typeIntro, 80);
+      }
+    }
+    typeIntro();
+
+    // Start Site
+    function startSite() {
+      const intro = document.getElementById("intro");
+      const main = document.getElementById("mainContent");
+      intro.classList.add("glitch-exit");
+      setTimeout(() => {
+        intro.style.display = "none";
+        main.classList.remove("opacity-0");
+        main.classList.add("opacity-100");
+
+        // Play music on user interaction
+        music.play().catch(err => {
+          console.log("Audio play failed:", err);
+        });
+      }, 1000);
+    }
+
+    // Support Enter key to start site too
+    document.addEventListener("keydown", e => {
+      if (e.key === "Enter") startSite();
+    });
+  </script>
+</body>
+</html>
